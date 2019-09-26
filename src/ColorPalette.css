@@ -1,0 +1,28 @@
+.ColorPalette {
+    background-color: white;
+    height: 100vh;
+    overflow: auto;
+    /* position: relative; */
+}
+
+.ColorPalette-ColorBoxes {
+    height: 90%;
+}
+
+.ColorPalette-header{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    padding: 15px 25px;
+    width: 100%;
+}
+
+.ColorPalette-Footer {
+    height: 5%;
+} 
+
+.ColorPalette-link {
+    padding-top: 10px;
+    text-align: right;
+    width: 30%;
+}
