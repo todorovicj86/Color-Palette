@@ -1,0 +1,25 @@
+
+.PaletteNavbar {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    /* padding: 10px; */
+    width: 70%;
+}
+
+.PaletteNavbar-slider {
+    /* padding: 20px;; */
+    width: 25%;
+}
+
+.PaletteNavbar-select {
+    /* padding: 0 50px; */
+    /* padding-left: ; */
+    text-align: center;
+    width: 30%;
+}
+
+.LogoName {
+    width: 30%;
+    text-align: left;
+}
