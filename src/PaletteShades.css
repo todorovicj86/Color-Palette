@@ -1,0 +1,44 @@
+
+.PaletteShades {
+    background-color: white;
+    height: 100vh;
+    overflow: scroll;
+    /* position: relative; */
+}
+
+.ShadeBoxes {
+    height: 90%;
+}
+
+.PaletteShades .ColorBox-MoreButton {
+    display: none;
+}
+
+.PaletteShades  .PaletteNavbar-slider {
+    opacity: 0;
+}
+
+.PaletteShades-header {
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    padding: 15px 25px;
+    width: 100%;
+}
+
+
+.PaletteShades-link {
+    padding-top: 10px;
+    text-align: right;
+    width: 30%;
+   
+}
+
+.LinkBackTo {
+    color:white!important;
+}
+
+.LinkBackTo:hover {
+    text-decoration: none;
+}
