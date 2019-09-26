@@ -46,8 +46,7 @@ class PaletteNavbar extends Component {
                         aria-labelledby="discrete-slider"
                         valueLabelDisplay="auto"
                         step={100}
-                        marks={this.props.marks}
-                        min={50}
+                        min={100}
                         max={900}
                         onChange={this.handleShadeChange}
                     />
