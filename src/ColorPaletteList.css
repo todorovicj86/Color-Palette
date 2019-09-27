@@ -65,14 +65,17 @@
 }
 
 .delete {
-    /* background-color: white!important; */
+    background-color: red!important;
     border-radius: 0!important;
     position: absolute!important;
     display: none!important;
     top: 0;
     left: 0;
-    padding: 20px!important;
-    color: red!important;
+    min-height: 60px!important;
+    min-width: 60px!important;
+    opacity: 0.6;
+    /* padding: 18px 15px!important; */
+    color: white!important;
 }
 
 .color-palette:hover .delete {
