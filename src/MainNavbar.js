@@ -8,9 +8,9 @@ class MainNavbar extends Component {
             <div className="MainNavbar" >
                 <h1>Color Palettes</h1>
                 <div className="MainNavbar-link">
-                <h4>
-                    <Link to ="/newpalette">Create A New Palette</Link>
-                </h4>
+                    <h5>
+                        <Link to ="/newpalette">Create A New Palette</Link>
+                    </h5>
                     
                 </div>
                 
