@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Slider from 'rc-slider';
+import {Link} from 'react-router-dom'
 import 'rc-slider/assets/index.css'
 // import Button from '@material-ui/core/Button';
 // import Menu from '@material-ui/core/Menu';
@@ -38,18 +39,23 @@ class PaletteNavbar extends Component {
         return(
             <div className="PaletteNavbar">
                 <div className="LogoName">
-                    <h2>ColorPalettes</h2>
+                    <h3>
+                        <Link to="/">ColorPalettes</Link>
+                    </h3>
                 </div>
                 <div className="PaletteNavbar-slider">
-                    <Slider 
-                        defaultValue={this.state.value}
-                        aria-labelledby="discrete-slider"
-                        valueLabelDisplay="auto"
-                        step={100}
-                        min={100}
-                        max={900}
-                        onChange={this.handleShadeChange}
-                    />
+                    <span className="Slider-legend">
+                        Level: [{this.state.value}]
+                    </span>
+                    <div className="Slider-container">
+                        <Slider 
+                            defaultValue={this.state.value}
+                            step={100}
+                            min={100}
+                            max={900}
+                            onChange={this.handleShadeChange}
+                        />
+                    </div>
                 </div>
                 <div className="PaletteNavbar-select">
                     <Select value = {this.props.format} onChange={this.handleChange}>
