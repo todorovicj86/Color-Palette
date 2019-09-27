@@ -51,8 +51,8 @@ class PaletteShades extends Component {
             <div className="PaletteShades-header">
                 <PaletteNavbar handleFormat = {this.props.handleFormat} format = {this.props.format}/>
                 <div className = "PaletteShades-link">
-                    <Button variant="contained" color="primary">
-                        <Link className= "LinkBackTo" to = {`/palette/${this.props.palette.id}`}>Go back</Link>
+                    <Button>
+                        <Link className= "LinkBackTo" to = {`/palette/${this.props.palette.id}`}><i class="fas fa-arrow-left"></i> Go back</Link>
                     </Button>
                 </div>
             </div>
