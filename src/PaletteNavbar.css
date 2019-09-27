@@ -1,25 +1,53 @@
-
 .PaletteNavbar {
     display: flex;
     flex-direction: row;
-    align-content: space-between;
-    /* padding: 10px; */
+    align-items: center;
     width: 70%;
 }
 
 .PaletteNavbar-slider {
-    /* padding: 20px;; */
-    width: 25%;
+    width: 30%;
 }
-
+.Slider-container {
+    display:inline-block;
+    width: 65%;
+}
+.Slider-legend{
+    display: inline-block;
+    width: 35%;
+}
 .PaletteNavbar-select {
-    /* padding: 0 50px; */
-    /* padding-left: ; */
     text-align: center;
     width: 30%;
 }
 
 .LogoName {
-    width: 30%;
+    display: flex;
+    align-items: center;
+    padding: 0 7px;
     text-align: left;
+    height: 100%;
 }
+
+.rc-slider-track,
+.rc-slider-rail {
+    background-color: lightgray;
+    height: 6px;
+}
+
+.rc-slider-handle,
+.rc-slider-handle:active,
+.rc-slider-handle:focus,
+.rc-slider-handle:hover {
+    background-color: green;
+    outline: none;
+    border: 2px solid green;
+    width: 16px;
+    height: 16px;
+    box-shadow: none;
+}
+
+.rc-slider-track {
+    background-color: transparent;
+}
+

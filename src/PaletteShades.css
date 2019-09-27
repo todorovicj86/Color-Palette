@@ -19,20 +19,22 @@
 }
 
 .PaletteShades-header {
-    /* background-color: blue; */
     display: flex;
     flex-direction: row;
-    align-content: space-between;
-    padding: 15px 25px;
+    height: 10vh;
     width: 100%;
 }
 
-
 .PaletteShades-link {
-    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-right: 7px;
     text-align: right;
     width: 30%;
-   
+}
+.PaletteShades-link button {
+    flex: 0 1 auto;
+    margin-left: auto;
 }
 
 .LinkBackTo {

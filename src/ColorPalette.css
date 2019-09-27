@@ -12,9 +12,8 @@
 .ColorPalette-header{
     display: flex;
     flex-direction: row;
-    align-content: space-between;
-    padding: 15px 25px;
     width: 100%;
+    height: 10vh;
 }
 
 .ColorPalette-Footer {
@@ -22,7 +21,13 @@
 } 
 
 .ColorPalette-link {
-    padding-top: 10px;
-    text-align: right;
+    display: flex;
+    align-items: center;
+    margin-right: 7px;
     width: 30%;
+}
+
+.ColorPalette-link button {
+    flex: 0 1 auto;
+    margin-left: auto;
 }
