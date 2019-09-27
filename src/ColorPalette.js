@@ -64,8 +64,8 @@ class ColorPalette extends Component {
                                     />
 
                     <div className="ColorPalette-link">
-                         <Button variant="contained" color="primary">
-                            <Link className= "LinkBackTo" id="LinkBackTo" to = "/">Go back</Link>
+                         <Button>
+                            <Link className= "LinkBackTo" id="LinkBackTo" to = "/"><i class="fas fa-arrow-left"></i> Go back</Link>
                         </Button>
                     </div>
                 </div>
