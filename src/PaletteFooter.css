@@ -1,5 +1,10 @@
 .PaletteFooter {
     height: 100%;
     text-align: right;
-    padding: 20px;
+    flex: 0 1 auto;
+    margin-left: auto;
+}
+
+.PaletteFooter h6 {
+    margin: 0.4rem;
 }
