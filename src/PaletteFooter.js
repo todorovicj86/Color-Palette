@@ -5,7 +5,7 @@ class PaletteFooter extends Component{
     render(){
         return(
             <div className="PaletteFooter">
-                <h5>{this.props.paletteName}</h5>
+                <h6>{this.props.paletteName}</h6>
             </div>
         )
     }
