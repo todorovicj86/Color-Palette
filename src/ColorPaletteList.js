@@ -40,7 +40,7 @@ class ColorPaletteList extends Component {
                                 }
                                 </div>
                                 <IconButton onClick={this.handleDelete} className ="delete" id={palette.id}>
-                                    <i   id={palette.id} className ="fas fa-trash"></i>
+                                    <i id={palette.id} className ="fas fa-trash"></i>
                                 </IconButton>
                                 <div className="ColorPalette-footer">
                                     <div className="footer-link">
