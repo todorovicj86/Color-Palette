@@ -6,6 +6,7 @@
 }
 
 .MainNavbar h1 {
+    color: white;
     display: inline-block;
     width: 70%;
     text-align: left;
@@ -16,4 +17,9 @@
     display: inline-block;
     width: 30%;
     text-align: right;
+}
+
+.MainNavbar-link  a {
+    color: white;
+    text-transform: capitalize;
 }
