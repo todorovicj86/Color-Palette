@@ -5,20 +5,15 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import ColorBox from './ColorBox'
 // import seedColors from './seedColors'
 // import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { Drawer, Button, TextField, Dialog,
+         DialogActions, DialogContent, DialogContentText, 
+         DialogTitle, Input } from '@material-ui/core';
 import chroma from 'chroma-js'
 // import { Picker } from 'emoji-mart'
 import uuid from 'uuid'
 // import DeleteIcon from '@icons/material/DeleteIcon';
 // import { Card, Container, IconButton } from '@material-ui/core';
 import './NewPaletteForm.css'
-
 
 
 class NewPaletteForm extends Component {
@@ -39,7 +34,8 @@ class NewPaletteForm extends Component {
             color: "",
             bgColor: "rgb(220, 0, 78)",
             open: false,
-            disabled: false,          
+            disabled: false, 
+            leftOpen: true,         
         }
         this.hasColor = new Set(this.state.colors.map(col => col.color))
         // console.log(this.hasColor)
@@ -55,6 +51,7 @@ class NewPaletteForm extends Component {
         this.addPaletteToPaletteList = this.addPaletteToPaletteList.bind(this)
         this.chooseRandomColor = this.chooseRandomColor.bind(this);
         this.clearPalette = this.clearPalette.bind(this);
+        this.toggleColorPicker = this.toggleColorPicker.bind(this)
 
     }
 
@@ -188,61 +185,64 @@ class NewPaletteForm extends Component {
         })
     }
 
-    onBeforeDragStart = () => {
-        /*...*/
-      };
-    
-      onDragStart = () => {
-        /*...*/
-      };
-      onDragUpdate = () => {
-        /*...*/
-      };
-      onDragEnd = () => {
-        // the only one that is required
-      };
- 
+    toggleColorPicker(){
+          this.setState(st=>({
+              leftOpen: !st.leftOpen,
+          }))
+      }
     render(){
-        const {bgColor, color, name, open, paletteName, colors, disabled} =  this.state;
+        const {bgColor, color, name, open, paletteName, colors, disabled, leftOpen} =  this.state;
         // set the text color, based on the contrast with the background
         const textColor = chroma.contrast(bgColor, 'white') >= 4.5 ? "white" : "black"
         return(
             <div className = "NewPaletteForm" >
-                <div className="color-picker">
-                    <h2>Design Your Palette</h2>
-                    <Button variant="contained" color="primary" onClick={this.chooseRandomColor} disabled={disabled}>
-                        Random Color
-                    </Button>
-                    <Button variant="contained" color="secondary" onClick={this.clearPalette}>
-                        Clear Palette
-                    </Button>
-                    <ChromePicker color={color}
-                         onChangeComplete = {this.handleChange}
-                    />
-                    <form onSubmit = {this.handleSubmit}>  
-                        <TextField
-                            required
-                            id="filled-with-placeholder"
-                            label="Color Name"
-                            placeholder="Color Name"
-                            margin="normal"
-                            variant="filled"
-                            value = {name}
-                            name="name"
-                            onChange={this.addColorName}
-                            disabled={disabled}
-                        />
-                        <Button className="addColor-btn" onClick = {this.addColor} 
-                                style={{backgroundColor: disabled ? "rgba(0, 0, 0, 0.12)" : bgColor, color: textColor}} 
-                                disabled={disabled}
-                        >
-                            Add Color
-                        </Button>
-                    </form>
-                </div>
+                <Drawer id="ColorPicker-drawer" open={leftOpen}>
+                    <div className="color-picker">
+                        <span>
+                            <i id="LeftArrow"  onClick={this.toggleColorPicker} className="fas fa-angle-double-left"></i>
+                        </span> 
 
-                <div className="color-container">
+                        <h3>Design Your Palette</h3>
+
+                        <div className="color-picker-buttons">
+                            <Button variant="contained" color="primary" onClick={this.chooseRandomColor} disabled={disabled}>
+                                Random Color
+                            </Button>
+                            <Button variant="contained" color="secondary" onClick={this.clearPalette}>
+                                Clear Palette
+                            </Button>
+                        </div>
+                        <ChromePicker color={color}
+                            onChangeComplete = {this.handleChange}
+                        />
+                        <div className="color-picker-inputForm">
+                            <TextField className="ColorNameInput"
+                                required
+                                id="filled-with-placeholder"
+                                label="Color Name"
+                                placeholder="Color Name"
+                                margin="normal"
+                                variant="filled"
+                                value = {name}
+                                name="name"
+                                onChange={this.addColorName}
+                                disabled={disabled}
+                            />
+                            <Button className="addColor-btn" onClick = {this.addColor} 
+                                    style={{backgroundColor: disabled ? "rgba(0, 0, 0, 0.12)" : bgColor, color: textColor}} 
+                                    disabled={disabled}
+                            >
+                                Add Color
+                            </Button>
+                        </div>
+                    </div>
+                </Drawer>
+
+                <div className={`${leftOpen ? 'color-container active' : "color-container"}`}>
                     <div className="color-container-navbar">
+                    {/* <Button size="small" color="inherit" className={`${leftOpen ? "hidden" : "visible" }`} onClick={this.toggleColorPicker}> */}
+                        <i id="RightArrow" onClick={this.toggleColorPicker} className={`${leftOpen ? "fas fa-angle-double-right hidden" : "fas fa-angle-double-right" }`} ></i>
+                    {/* </Button> */}
                         <h5>Create A Palette</h5>
                         <div className="navbar-button">
                             <Button variant="contained" color="primary">
@@ -255,7 +255,7 @@ class NewPaletteForm extends Component {
                         </div>
                         
                     </div>
-                    <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                    <Dialog id="paletteNameModal" open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title"> Add Palette Name</DialogTitle>
 
                         <DialogContent>
@@ -299,7 +299,8 @@ class NewPaletteForm extends Component {
                         
                     {/* </Dialog> */} 
                     <div className="color-container-palette">
-                        <DragDropContext   onBeforeDragStart={this.onBeforeDragStart}
+                        <DragDropContext   
+                                    onBeforeDragStart={this.onBeforeDragStart}
                                     onDragStart={this.onDragStart}
                                     onDragUpdate={this.onDragUpdate}
                                     onDragEnd={this.onDragEnd}> 
