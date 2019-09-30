@@ -16,10 +16,17 @@
     height: 6vh;
 }
 
+
 .ColorPalette-Footer {
     display: flex;
+    font-weight: bold;
+    justify-content: flex-end;
     align-items: center;
-    height: 5vh;
+    height: 4vh;
+} 
+.emoji {
+    font-size: 1.3rem;
+    margin: 0 1rem;
 } 
 
 .ColorPalette-link {
