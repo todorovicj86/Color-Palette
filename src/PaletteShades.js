@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PaletteNavbar from './PaletteNavbar'
+import Footer from './Footer'
 import ColorBox from './ColorBox'
 import Button from '@material-ui/core/Button';
 // import Grid from '@material-ui/core/Grid'
@@ -48,17 +49,18 @@ class PaletteShades extends Component {
         ))
         return(
             <div className="PaletteShades">
-            <div className="PaletteShades-header">
-                <PaletteNavbar handleFormat = {this.props.handleFormat} format = {this.props.format}/>
-                <div className = "PaletteShades-link">
-                    <Button>
-                        <Link className= "LinkBackTo" to = {`/palette/${this.props.palette.id}`}><i class="fas fa-arrow-left"></i> Go back</Link>
-                    </Button>
+                <div className="PaletteShades-header">
+                    <PaletteNavbar handleFormat = {this.props.handleFormat} format = {this.props.format}/>
+                    <div className = "PaletteShades-link">
+                        <Button>
+                            <Link className= "LinkBackTo" to = {`/palette/${this.props.palette.id}`}><i class="fas fa-arrow-left"></i> Go back</Link>
+                        </Button>
+                    </div>
                 </div>
-            </div>
                 <div className="ShadeBoxes">
                     {colorShades}
-                </div>     
+                </div>
+                <Footer {...this.props.palette} />    
             </div>
         )
     }
