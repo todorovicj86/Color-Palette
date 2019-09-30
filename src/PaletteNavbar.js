@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
 import Slider from 'rc-slider';
 import {Link} from 'react-router-dom'
-import 'rc-slider/assets/index.css'
-// import Button from '@material-ui/core/Button';
-// import Menu from '@material-ui/core/Menu';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@icons/material/CloseIcon';
 import MenuItem from '@material-ui/core/MenuItem';
-// import { Link } from 'react-router-dom'
-
 import Select from '@material-ui/core/Select';
+import 'rc-slider/assets/index.css'
 import './PaletteNavbar.css'
 
 class PaletteNavbar extends Component {
@@ -16,14 +15,19 @@ class PaletteNavbar extends Component {
         super(props);
         this.state={
             value: 500,
+            open: false,
         }
           
-        this.handleChange = this.handleChange.bind(this)
+        this.handleFormatChange = this.handleFormatChange.bind(this)
         this.handleShadeChange = this.handleShadeChange.bind(this)
+        this.closeSnackbar = this.closeSnackbar.bind(this)
     }
 
-    handleChange(evt){
+    handleFormatChange(evt){
         this.props.handleFormat(evt.target.value)
+        this.setState({
+            open: true,
+        })
     }
 
     handleShadeChange(value){
@@ -33,9 +37,13 @@ class PaletteNavbar extends Component {
         })
         
     }
+    closeSnackbar(){
+        this.setState({open: false})
+    }
 
     render(){
-            
+        const {value, open} = this.state;
+        const {format} = this.props;
         return(
             <div className="PaletteNavbar">
                 <div className="LogoName">
@@ -45,11 +53,11 @@ class PaletteNavbar extends Component {
                 </div>
                 <div className="PaletteNavbar-slider">
                     <span className="Slider-legend">
-                        Level: [{this.state.value}]
+                        Level: [{value}]
                     </span>
                     <div className="Slider-container">
                         <Slider 
-                            defaultValue={this.state.value}
+                            defaultValue={value}
                             step={100}
                             min={100}
                             max={900}
@@ -58,15 +66,38 @@ class PaletteNavbar extends Component {
                     </div>
                 </div>
                 <div className="PaletteNavbar-select">
-                    <Select value = {this.props.format} onChange={this.handleChange}>
+                    <Select value = {format} onChange={this.handleFormatChange}>
                         <MenuItem value = 'hex'>HEX - #FFFFFF</MenuItem>
                         <MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
                         <MenuItem value='rgba'>RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
                     </Select>
                 </div>
-                {/* <div className="ColorPalette-link">
-                        <Link to = "/">Go back</Link>
-                    </div> */}
+                
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={open}
+                    autoHideDuration={3000}
+                    message={<span id="message-id">Format Changed To {format.toUpperCase()}!</span>}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    onClose={this.closeSnackbar}
+                    
+                    action={[
+                    <IconButton
+                        key="close"
+                        aria-label="close"
+                        color="inherit"
+                        // className={classes.close}
+                        onClick={this.closeSnackbar}
+                    >
+                        <CloseIcon />
+                    </IconButton>,
+                    ]}
+                />
             </div>
         )
     }
