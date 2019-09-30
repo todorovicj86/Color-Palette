@@ -9,6 +9,10 @@
     height: 90%;
 }
 
+.ShadeBoxes .ColorBox {
+    height: 50%;
+}
+
 .PaletteShades .ColorBox-MoreButton {
     display: none;
 }
