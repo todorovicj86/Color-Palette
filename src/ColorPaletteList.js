@@ -1,15 +1,54 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-// import Grid from '@material-ui/core/Grid';
-// import DeleteIcon from '@icons/material/DeleteIcon';
+import { withStyles } from '@material-ui/styles';
 import { IconButton } from '@material-ui/core';
-import 'emoji-mart/css/emoji-mart.css'
-// import { Picker } from 'emoji-mart'
-import MainNavbar from './MainNavbar';
-import "./ColorPaletteList.css"
+import MiniPalette from './MiniPalette'
 import uuid from 'uuid'
-// import { mergeClasses } from '@material-ui/styles';
 
+const styles = {
+    root: {
+        alignItems: "flex-start",
+        backgroundColor: "blue",
+        color: "white",
+        display: "flex",
+        justifyContent: "center",
+        height: "100vh",
+    },
+    container: {
+        alignItems: 'flex-start',
+        display: "flex",
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        width: "50%",
+
+    },
+    navbar: {
+        alignItems: "center",
+        display: "flex",
+        justifyContent: "space-between",
+        height: "10vh",
+        width: "100%",
+    },
+    title: {
+ 
+    },
+    link: {
+        "& a" :{
+            color: "white",
+        }
+
+    },
+
+    palettes: {
+        boxSizing: "border-box",
+        width:"100%",
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 30%)",
+        gridGap: "5%",
+    }
+
+
+}
 
 class ColorPaletteList extends Component {
     constructor(props){
@@ -21,45 +60,45 @@ class ColorPaletteList extends Component {
         this.props.removePalette(event.target.id)
     }
 
+    goToPalette(id){
+        this.props.history.push(`/palette/${id}`);
+    }
+
 
     render() {
+        const {colorPalettes, classes} = this.props;
         return(
-            // <Container>
-            <div className="ColorPaletteList">
-                <div className = "ColorPaletteList-container">
-                    <MainNavbar /> 
-                    <div className="ColorPalettes-list">
-                        {this.props.colorPalettes.map((palette, index) => (
-                            <div className="color-palette" key={uuid()} id={palette.id}>
-                                <div className = "ColorBoxes-container">
-                                {
-                                    palette.colors.map(color =>(
-                                        <div className="ColorBoxes" key={uuid()} style={{backgroundColor: color.color}}>
-                                        </div>
-                                    ))
-                                }
-                                </div>
-                                <IconButton onClick={this.handleDelete} className ="delete" id={palette.id}>
-                                    <i id={palette.id} className ="fas fa-trash"></i>
-                                </IconButton>
-                                <div className="ColorPalette-footer">
-                                    <div className="footer-link">
-                                        <Link to = {`/palette/${palette.id}`}>{palette.paletteName}</Link> 
-                                    </div>
-                                    
-                                    <div className="footer-emoji">
-                                        {palette.emoji}
-                                    </div>
-                                </div>
+            <div className={classes.root}>
+                <div className = {classes.container}>
+                    <nav className={classes.navbar}>
+                        <h1 className={classes.title}>Color Palettes</h1>
+                        <h5 className={classes.link}>
+                            <Link to ="/newpalette">Create A New Palette</Link>
+                        </h5>
+                    </nav>
+                    <div className={classes.palettes}>
+                        {colorPalettes.map(palette => ( 
+                            <div>
+                            <MiniPalette 
+                                id={palette.id}
+                                key={uuid()}
+                                colors={palette.colors}
+                                paletteName={palette.paletteName}
+                                emoji = {palette.emoji}
+                                handleClick = {() => this.goToPalette(palette.id)}
+                            />
+                            <IconButton onClick={this.handleDelete} className ="delete" id={palette.id}>
+                                <i id={palette.id} className ="fas fa-trash"></i>
+                            </IconButton>
                             </div>
                         ))}
-
-                    </div>
+                        
+                    </div>             
                 </div>
-        
             </div>
+
         )
     }
 }
 
-export default ColorPaletteList;
+export default withStyles(styles)(ColorPaletteList);
