@@ -34,7 +34,7 @@ class ColorBox extends Component {
     // }
     render(){
         // let bgColor = this.props.colorCode; 
-        const { bgColor, colorName, paletteId } = this.props; 
+        const { bgColor, colorName, paletteId, id } = this.props; 
         const textColor = chroma.contrast(bgColor, 'white') >= 4.5 ? "white" : "black"
         return(
             
@@ -62,7 +62,7 @@ class ColorBox extends Component {
                 </CopyToClipboard>
 
                 <Button className="ColorBox-MoreButton">
-                <Link  to = {`/palette/${paletteId}/${colorName.split(" ").shift()}`} 
+                <Link  to = {`/palette/${paletteId}/${id}`} 
                             onClick={e => e.stopPropagation()} style={{ color: textColor}}>
                         More
                     </Link> 
