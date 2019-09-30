@@ -40,6 +40,7 @@ class ColorPalette extends Component {
                     onCopy = {this.handleCopy}
                     format = {format}
                     paletteId = {palette.id}
+                    id={color.id}
             />
         ))
           
