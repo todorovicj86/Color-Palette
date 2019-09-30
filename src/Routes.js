@@ -103,8 +103,9 @@ class Routes extends Component {
 
         return(
             <Switch>
-                <Route exact path="/" render = {() => <ColorPaletteList colorPalettes={this.state.colorPalettes} removePalette = {this.removePalette}
-                />} />
+                <Route exact path="/" 
+                      render = {(routProps) => <ColorPaletteList colorPalettes={colorPalettes} removePalette = {this.removePalette} {...routProps}/>} 
+                />
                 <Route exact path = "/palette/:name" render = {getPalette} />
                 <Route exact path = '/palette/:name/:colorName' render ={getColorShades} />
                 <Route exact path = "/newpalette" render= {() => <NewPaletteForm format={this.state.format} palettes={this.state.colorPalettes} />} />
