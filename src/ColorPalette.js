@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import ColorBox from './ColorBox'
 import PaletteNavbar from './PaletteNavbar'
+import Footer from './Footer'
 import {getPaletteShades} from './helpers'
 import './ColorPalette.css'
 import uuid from 'uuid'
@@ -63,10 +64,7 @@ class ColorPalette extends Component {
                     {colorBoxes}
                 </div>
 
-                <footer className="ColorPalette-Footer">
-                   {palette.paletteName}
-                   <span className="emoji">{palette.emoji}</span>
-                </footer>
+                <Footer {...palette}/>
 
             </div>
         )
