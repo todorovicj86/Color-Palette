@@ -84,13 +84,13 @@ class Routes extends Component {
       
         const getColorShades = props => {
             let name = props.match.params.name;
-            let colorName = props.match.params.colorName.split(" ")[0];
+            let colorName = props.match.params.colorName;
           
             let currentPalette = this.state.colorPalettes.find( 
               palette => palette.id === name
             )
             let currentColor = currentPalette.colors.find(
-              color => color.name === colorName.split(" ")[0]
+              color => color.name === colorName
             )
       
             return <PaletteShades {...props} color={currentColor} 
