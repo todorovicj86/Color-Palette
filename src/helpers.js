@@ -52,6 +52,7 @@ var getPaletteShades = function (currentPalette){
     for(let j=0; j < colorShade.length; j++){
       shadeInfo = {
         name: currentPalette.colors[i].name + " " + levels[j],
+        id: currentPalette.colors[i].name,
         hex: colorShade[j],
         rgb: chroma(colorShade[j]).css(),
         rgba: chroma(colorShade[j]).alpha(0.9).css(),
