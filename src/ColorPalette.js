@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import ColorBox from './ColorBox'
-import PaletteFooter from './PaletteFooter'
 import PaletteNavbar from './PaletteNavbar'
 import {getPaletteShades} from './helpers'
 import './ColorPalette.css'
@@ -64,9 +63,10 @@ class ColorPalette extends Component {
                     {colorBoxes}
                 </div>
 
-                <div className="ColorPalette-Footer">
-                    <PaletteFooter paletteName = {palette.paletteName} />
-                </div>
+                <footer className="ColorPalette-Footer">
+                   {palette.paletteName}
+                   <span className="emoji">{palette.emoji}</span>
+                </footer>
 
             </div>
         )
