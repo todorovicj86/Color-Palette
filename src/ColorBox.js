@@ -62,7 +62,10 @@ class ColorBox extends Component {
                 </CopyToClipboard>
 
                 <Button className="ColorBox-MoreButton">
-                    <Link  to = {`/palette/${paletteId}/${colorName}`} style={{ color: textColor}}>More</Link> 
+                <Link  to = {`/palette/${paletteId}/${colorName.split(" ").shift()}`} 
+                            onClick={e => e.stopPropagation()} style={{ color: textColor}}>
+                        More
+                    </Link> 
                 </Button>
                 
             </div>
