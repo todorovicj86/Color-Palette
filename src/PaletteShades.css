@@ -1,8 +1,7 @@
-.PaletteShades {
+/* .PaletteShades {
     background-color: white;
     height: 100vh;
     overflow: scroll;
-    /* position: relative; */
 }
 
 .ShadeBoxes {
@@ -51,4 +50,4 @@
 .LinkBackTo:hover {
     text-decoration: none;
     color: blue!important;
-}
+} */
