@@ -41,6 +41,7 @@ class ColorPalette extends Component {
                     format = {format}
                     paletteId = {palette.id}
                     id={color.id}
+                    showingFullPalette={true}
             />
         ))
           
