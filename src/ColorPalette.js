@@ -5,8 +5,40 @@ import ColorBox from './ColorBox'
 import PaletteNavbar from './PaletteNavbar'
 import Footer from './Footer'
 import {getPaletteShades} from './helpers'
+import { withStyles } from '@material-ui/styles';
 import './ColorPalette.css'
 import uuid from 'uuid'
+
+const styles = {
+    colorPalette: {
+        backgroundColor: "white",
+        height: "100vh",
+        overflow: "auto",
+    },
+    header: {
+        display: "flex",
+        flexDirection:"row",
+        width: "100%",
+        height:"6vh",
+    },
+    link: {
+        alignItems: "center",
+        display: "flex",
+        marginRight: "7px",
+        width: "30%",
+        "& button, button:hover":{
+            background: "transparent",
+            flex: "0 1 auto",
+            marginLeft: "auto",
+            color: "black",
+        }
+
+    },
+    colorBoxesContainer: {
+        height: "90vh",
+    }
+
+}
 
 class ColorPalette extends Component {
     constructor(props){
@@ -31,24 +63,24 @@ class ColorPalette extends Component {
 
     render(){
 
-        const {palette, format, sliderMarks,handleFormat} = this.props;
+        const {palette, format, sliderMarks,handleFormat, classes} = this.props;
         const colorBoxes = palette.colors[this.state.shadeLevel].map (color => (
             <ColorBox 
-                    bgColor = {color[format]}
-                    colorName = {color.name}
-                    key={uuid()}
-                    onCopy = {this.handleCopy}
-                    format = {format}
-                    paletteId = {palette.id}
-                    id={color.id}
-                    showingFullPalette={true}
+                bgColor = {color[format]}
+                colorName = {color.name}
+                key={uuid()}
+                onCopy = {this.handleCopy}
+                format = {format}
+                paletteId = {palette.id}
+                id={color.id}
+                showingFullPalette={true}
             />
         ))
           
           getPaletteShades(palette)
         return (
-            <div className="ColorPalette">
-                <div className="ColorPalette-header">
+            <div className={classes.colorPalette}>
+                <div className={classes.header}>
                     <PaletteNavbar 
                         handleFormat = {handleFormat} 
                         format = {format} 
@@ -56,21 +88,21 @@ class ColorPalette extends Component {
                         changeShade = {this.changeShade}
                     />
 
-                    <div className="ColorPalette-link">
+                    <div className={classes.link}>
                          <Button>
                             <Link className= "LinkBackTo" id="LinkBackTo" to = "/"><i className="fas fa-arrow-left"></i> Go back</Link>
                         </Button>
                     </div>
                 </div>
-                <div className="ColorPalette-ColorBoxes">
+                <div className={classes.colorBoxesContainer}>
                     {colorBoxes}
                 </div>
 
                 <Footer {...palette}/>
-
+    
             </div>
         )
     }
 }
 
-export default ColorPalette;
+export default withStyles(styles)(ColorPalette);
