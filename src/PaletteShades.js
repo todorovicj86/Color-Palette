@@ -7,55 +7,9 @@ import Button from '@material-ui/core/Button';
 // import Grid from '@material-ui/core/Grid'
 import chroma from 'chroma-js'
 import { withStyles } from '@material-ui/styles';
-import './PaletteShades.css'
+import styles from './styles/PaletteStyles'
 import uuid from 'uuid'
 
-
-const styles = {
-    paletteShades: {
-        backgroundColor: "white",
-        height: "100vh",
-        overflow: "auto",
-
-    },
-    header: {
-        display: "flex",
-        flexDirection:"row",
-        width: "100%",
-        height:"6vh",
-        "& div:first-child div:nth-child(2)": {
-            opacity: "0",
-        }
-    },
-    link: {
-        alignItems: "center",
-        display: "flex",
-        marginRight: "7px",
-        width: "30%",
-        "& button, button:hover":{
-            background: "transparent",
-            flex: "0 1 auto",
-            marginLeft: "auto",
-            color: "black",
-        }
-
-    },
-    colorBoxesContainer: {
-        height: "90vh",
-    },
-
-    linkBack: {
-        color: "black",
-        "& i":{
-            marginRight: "5px",
-        },
-        "&:hover":{
-            textDecoration: "none",
-            color:"blue"
-        }
-    }
-
-}
 
 class PaletteShades extends Component {
 //  make shades of one color
@@ -101,11 +55,12 @@ class PaletteShades extends Component {
         
         ))
         return(
-            <div className={classes.paletteShades}>
+            <div className={classes.colorPalette}>
                 <div className={classes.header}>
                     <PaletteNavbar 
                         handleFormat = {handleFormat} 
                         format = {format}
+                        hiddenSlider = {true}
                     />
                     <div className = {classes.link}>
                         <Button>

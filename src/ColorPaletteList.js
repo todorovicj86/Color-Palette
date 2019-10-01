@@ -1,54 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/styles';
+import styles from './styles/ColorPaletteListStyles';
 import { IconButton } from '@material-ui/core';
 import MiniPalette from './MiniPalette'
 import uuid from 'uuid'
 
-const styles = {
-    root: {
-        alignItems: "flex-start",
-        backgroundColor: "blue",
-        color: "white",
-        display: "flex",
-        justifyContent: "center",
-        height: "100vh",
-    },
-    container: {
-        alignItems: 'flex-start',
-        display: "flex",
-        flexDirection: 'column',
-        flexWrap: 'wrap',
-        width: "50%",
 
-    },
-    navbar: {
-        alignItems: "center",
-        display: "flex",
-        justifyContent: "space-between",
-        height: "10vh",
-        width: "100%",
-    },
-    title: {
- 
-    },
-    link: {
-        "& a" :{
-            color: "white",
-        }
-
-    },
-
-    palettes: {
-        boxSizing: "border-box",
-        width:"100%",
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 30%)",
-        gridGap: "5%",
-    }
-
-
-}
 
 class ColorPaletteList extends Component {
     constructor(props){
@@ -78,7 +36,7 @@ class ColorPaletteList extends Component {
                     </nav>
                     <div className={classes.palettes}>
                         {colorPalettes.map(palette => ( 
-                            <div>
+                            <div key={uuid()}>
                             <MiniPalette 
                                 id={palette.id}
                                 key={uuid()}
@@ -87,7 +45,7 @@ class ColorPaletteList extends Component {
                                 emoji = {palette.emoji}
                                 handleClick = {() => this.goToPalette(palette.id)}
                             />
-                            <IconButton onClick={this.handleDelete} className ="delete" id={palette.id}>
+                            <IconButton  onClick={this.handleDelete} className ="delete" id={palette.id}>
                                 <i id={palette.id} className ="fas fa-trash"></i>
                             </IconButton>
                             </div>
