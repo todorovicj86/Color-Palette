@@ -1,20 +1,68 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PaletteNavbar from './PaletteNavbar'
-import Footer from './Footer'
 import ColorBox from './ColorBox'
+import Footer from './Footer'
 import Button from '@material-ui/core/Button';
 // import Grid from '@material-ui/core/Grid'
 import chroma from 'chroma-js'
+import { withStyles } from '@material-ui/styles';
 import './PaletteShades.css'
 import uuid from 'uuid'
 
+
+const styles = {
+    paletteShades: {
+        backgroundColor: "white",
+        height: "100vh",
+        overflow: "auto",
+
+    },
+    header: {
+        display: "flex",
+        flexDirection:"row",
+        width: "100%",
+        height:"6vh",
+        "& div:first-child div:nth-child(2)": {
+            opacity: "0",
+        }
+    },
+    link: {
+        alignItems: "center",
+        display: "flex",
+        marginRight: "7px",
+        width: "30%",
+        "& button, button:hover":{
+            background: "transparent",
+            flex: "0 1 auto",
+            marginLeft: "auto",
+            color: "black",
+        }
+
+    },
+    colorBoxesContainer: {
+        height: "90vh",
+    },
+
+    linkBack: {
+        color: "black",
+        "& i":{
+            marginRight: "5px",
+        },
+        "&:hover":{
+            textDecoration: "none",
+            color:"blue"
+        }
+    }
+
+}
 
 class PaletteShades extends Component {
 //  make shades of one color
     getShades(){
         let shadeObj =[]
         const baseColor = this.props.color.color;
+        console.log(baseColor)
         const name = this.props.color.name;
         const darkestShade = chroma(baseColor).darken(4);
         const brightestShade = chroma(baseColor).brighten(2.6)
@@ -23,7 +71,8 @@ class PaletteShades extends Component {
         for(let i = 0; i < levels.length; i++){
             let data = {
                 name: name + " " + levels[i],
-                color: colorShade[i]
+                color: colorShade[i],
+                id: name,
             }
             shadeObj.push(data)
         }
@@ -32,39 +81,45 @@ class PaletteShades extends Component {
 
     render(){
         const shades = this.getShades();
+        const {format, handleFormat, palette, onCopy, classes } = this.props;
+
        
         const colorShades = shades.map(bgColor => (
             <ColorBox 
                 colorName = {bgColor.name} 
                 bgColor = {
-                    (this.props.format === 'hex' &&  chroma(bgColor.color).hex()) ||
-                    (this.props.format === "rgb" && chroma(bgColor.color).css()) ||
-                    (this.props.format === "rgba" && chroma(bgColor.color).alpha(0.9).css())                                                             
+                    (format === 'hex' &&  chroma(bgColor.color).hex()) ||
+                    (format === "rgb" && chroma(bgColor.color).css()) ||
+                    (format === "rgba" && chroma(bgColor.color).alpha(0.9).css())                                                             
                 }
-                onCopy = {this.props.onCopy}
-                format = {this.props.format}
-                key = {uuid()}    
-                showingFullPalette = {false}                                             
+                onCopy = {onCopy}
+                format = {format}
+                key = {uuid()}
+                id={bgColor.id}
+                showingFullPalette = {false}                                           
             />
         
         ))
         return(
-            <div className="PaletteShades">
-                <div className="PaletteShades-header">
-                    <PaletteNavbar handleFormat = {this.props.handleFormat} format = {this.props.format}/>
-                    <div className = "PaletteShades-link">
+            <div className={classes.paletteShades}>
+                <div className={classes.header}>
+                    <PaletteNavbar 
+                        handleFormat = {handleFormat} 
+                        format = {format}
+                    />
+                    <div className = {classes.link}>
                         <Button>
-                            <Link className= "LinkBackTo" to = {`/palette/${this.props.palette.id}`}><i class="fas fa-arrow-left"></i> Go back</Link>
+                            <Link className= {classes.linkBack} to = {`/palette/${palette.id}`}><i className="fas fa-arrow-left"></i> Go back</Link>
                         </Button>
                     </div>
                 </div>
-                <div className="ShadeBoxes">
+                <div className={classes.colorBoxesContainer}>
                     {colorShades}
-                </div>
-                <Footer {...this.props.palette} />    
+                </div>  
+                <Footer {...palette} />
             </div>
         )
     }
 }
 
-export default PaletteShades;
+export default withStyles(styles)(PaletteShades);
