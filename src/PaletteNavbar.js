@@ -1,13 +1,16 @@
 import React, {Component} from 'react'
 import Slider from 'rc-slider';
 import {Link} from 'react-router-dom'
+import { withStyles } from '@material-ui/styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@icons/material/CloseIcon';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import 'rc-slider/assets/index.css'
-import './PaletteNavbar.css'
+import styles from './styles/PaletteNavbarStyles'
+
+
 
 class PaletteNavbar extends Component {
 
@@ -43,29 +46,33 @@ class PaletteNavbar extends Component {
 
     render(){
         const {value, open} = this.state;
-        const {format} = this.props;
+        const {format, classes, hiddenSlider} = this.props;
         return(
-            <div className="PaletteNavbar">
-                <div className="LogoName">
+            <div className={classes.PaletteNavbar}>
+                <div className={classes.logo}>
                     <h3>
                         <Link to="/">ColorPalettes</Link>
                     </h3>
                 </div>
-                <div className="PaletteNavbar-slider">
-                    <span className="Slider-legend">
-                        Level: [{value}]
-                    </span>
-                    <div className="Slider-container">
-                        <Slider 
-                            defaultValue={value}
-                            step={100}
-                            min={100}
-                            max={900}
-                            onChange={this.handleShadeChange}
-                        />
+              
+                    <div className={ `${classes.sliderContainer} ${hiddenSlider && classes.hidden}`}>
+                        <span className={classes.sliderLegend}>
+                            Level: [{value}]
+                        </span>
+                        
+                            <div className={classes.slider}>
+                                <Slider 
+                                    defaultValue={value}
+                                    step={100}
+                                    min={100}
+                                    max={900}
+                                    onChange={this.handleShadeChange}
+                                />
+                            </div>
+                    
                     </div>
-                </div>
-                <div className="PaletteNavbar-select">
+                
+                <div className={classes.select}>
                     <Select value = {format} onChange={this.handleFormatChange}>
                         <MenuItem value = 'hex'>HEX - #FFFFFF</MenuItem>
                         <MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
@@ -103,4 +110,4 @@ class PaletteNavbar extends Component {
     }
 }
 
-export default PaletteNavbar;
+export default withStyles(styles) (PaletteNavbar);
