@@ -315,6 +315,8 @@ class NewPaletteForm extends Component {
                                     colorName = {color.name}
                                     key={uuid()}
                                     format = {this.props.format}
+                                    showLink={true}
+                                    showingFullPalette={true}
                                 />
                            
                               
