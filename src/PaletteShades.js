@@ -43,7 +43,8 @@ class PaletteShades extends Component {
                 }
                 onCopy = {this.props.onCopy}
                 format = {this.props.format}
-                key = {uuid()}                                               
+                key = {uuid()}    
+                showingFullPalette = {false}                                             
             />
         
         ))
