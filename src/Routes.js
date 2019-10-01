@@ -75,31 +75,34 @@ class Routes extends Component {
               
             );
             return <ColorPalette {...props} palette={getPaletteShades(currentPalette)} 
-                    format={this.state.format} 
-                    handleFormat = {this.handleFormat}
-                    onCopy = {this.onCopy} 
-                    sliderMarks = {this.props.marks}
+                      format={this.state.format} 
+                      handleFormat = {this.handleFormat}
+                      onCopy = {this.onCopy} 
+                      sliderMarks = {this.props.marks}
                     />;
         };
       
         const getColorShades = props => {
             let name = props.match.params.name;
             let colorName = props.match.params.colorName;
-          
+                     
             let currentPalette = this.state.colorPalettes.find( 
               palette => palette.id === name
             )
             let currentColor = currentPalette.colors.find(
               color => color.name === colorName
+              
             )
       
             return <PaletteShades {...props} color={currentColor} 
-                    palette = {currentPalette} 
-                    format={this.state.format} 
-                    handleFormat = {this.handleFormat}
-                    onCopy = {this.onCopy} 
-                  />
+                      palette = {currentPalette} 
+                      format={this.state.format} 
+                      handleFormat = {this.handleFormat}
+                      onCopy = {this.onCopy} 
+                    />
         }
+
+        const {colorPalettes, format } = this.state;
 
         return(
             <Switch>
@@ -107,8 +110,9 @@ class Routes extends Component {
                       render = {(routProps) => <ColorPaletteList colorPalettes={colorPalettes} removePalette = {this.removePalette} {...routProps}/>} 
                 />
                 <Route exact path = "/palette/:name" render = {getPalette} />
+                {/* <Route exact path = '/palette/:name/:colorName' render ={routProps => <PaletteShades colorPalettes={colorPalettes} {...routProps}/>} /> */}
                 <Route exact path = '/palette/:name/:colorName' render ={getColorShades} />
-                <Route exact path = "/newpalette" render= {() => <NewPaletteForm format={this.state.format} palettes={this.state.colorPalettes} />} />
+                <Route exact path = "/newpalette" render= {() => <NewPaletteForm format={format} palettes={colorPalettes} />} />
                 <Redirect to = "/" />
             </Switch>
 
