@@ -1,10 +1,10 @@
-.ColorBox {
+/* .ColorBox {
     display: inline-block;
     height: 25%;
     margin: 0 auto;
     position: relative;
     width: 20%;
-    vertical-align: middle; /*to remove bottom space*/
+    vertical-align: middle;
 
 }
 
@@ -110,4 +110,4 @@
 .ColorBox-OverlayerMsg p {
     font-size: 1.5rem;
     font-weight: 100;
-}
+} */
