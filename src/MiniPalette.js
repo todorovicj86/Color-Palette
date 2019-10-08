@@ -3,24 +3,13 @@ import { withStyles } from '@material-ui/styles';
 import styles from './styles/MiniPaletteStyles'
 import IconButton from '@material-ui/core/IconButton';
 
-
-
 class MiniPalette extends Component {
-    constructor(props){
-        super(props);
-        this.handleDelete = this.handleDelete.bind(this)
-    }
 
-    handleDelete(evt){
-        const id = evt.target.id;
-        console.log(id)
-        this.props.handleDelete(id)
-    }
     render(){
-    const {classes, id, paletteName, colors, emoji, handleClick} = this.props;
+        const {classes, id, paletteName, colors, emoji, handleClick} = this.props;
 
         return(
-            <div className={classes.root} >
+            <div className={classes.root} onClick={this.props.handleClick}>
                 <div className={classes.colors}>
                     {colors.map(color => (
                         <div key={color.name} 
@@ -32,9 +21,13 @@ class MiniPalette extends Component {
                     {paletteName}
                     <span className={classes.emoji}>{emoji}</span>
                 </h5> 
-                <IconButton  onClick={this.handleDelete} className ={classes.delete} id={id}>
+                <IconButton className ={classes.delete} id={id}  
+                    onClick= {this.props.openDeleteDialog} 
+                    
+                >
                     <i id={id} className ="fas fa-trash"></i>
-                </IconButton>            
+                </IconButton> 
+                    
                 
             </div>
         )
