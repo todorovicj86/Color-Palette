@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/ColorPaletteListStyles';
-import { IconButton } from '@material-ui/core';
 import MiniPalette from './MiniPalette'
-import uuid from 'uuid'
 
 
 
@@ -14,8 +12,8 @@ class ColorPaletteList extends Component {
         this.handleDelete = this.handleDelete.bind(this)
     }
 
-    handleDelete(event){
-        this.props.removePalette(event.target.id)
+    handleDelete(id){
+        this.props.removePalette(id)
     }
 
     goToPalette(id){
@@ -36,18 +34,16 @@ class ColorPaletteList extends Component {
                     </nav>
                     <div className={classes.palettes}>
                         {colorPalettes.map(palette => ( 
-                            <div key={uuid()}>
-                            <MiniPalette 
-                                id={palette.id}
-                                key={uuid()}
-                                colors={palette.colors}
-                                paletteName={palette.paletteName}
-                                emoji = {palette.emoji}
-                                handleClick = {() => this.goToPalette(palette.id)}
-                            />
-                            <IconButton  onClick={this.handleDelete} className ="delete" id={palette.id}>
-                                <i id={palette.id} className ="fas fa-trash"></i>
-                            </IconButton>
+                            <div key={palette.id}>
+                                <MiniPalette 
+                                    id={palette.id}
+                                    // key={palette.id}
+                                    colors={palette.colors}
+                                    paletteName={palette.paletteName}
+                                    emoji = {palette.emoji}
+                                    handleClick = {() => this.goToPalette(palette.id)}
+                                    handleDelete={this.handleDelete}
+                                />
                             </div>
                         ))}
                         
