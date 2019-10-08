@@ -6,8 +6,12 @@ export default {
         position: "relative",
         overflow: "hidden",
         "&:hover": {
-            cursor: "pointer"
-        }
+            "& button":{
+                opacity: "1",
+                color: "white"
+            }
+        },
+    
     },
     colors: {
         backgroundColor: "#d7dbdc",
@@ -34,12 +38,28 @@ export default {
         color:"black",
         paddingTop: "0.5rem",
         fontSize: "1rem",
-        position: "relative"
+        position: "relative",
+        "&:hover":{
+            cursor: "pointer",
+            color: "blue"
+        }
 
     },
     emoji: {
         marginLeft: "0.5rem",
         fontSize: "1.5rem",
 
+    },
+
+    delete: {
+        position: "absolute!important",
+        top: "0!important",
+        left: "0",
+        opacity: "0",
+        borderRadius: "0",
+        backgroundColor: "rgb(233,108,108)",
+        "&:hover": {
+            backgroundColor: "rgba(233,108,108, 0.8)"
+        }
     }
 }
