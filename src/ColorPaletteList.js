@@ -3,17 +3,48 @@ import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/ColorPaletteListStyles';
 import MiniPalette from './MiniPalette'
-
-
+import CloseIcon from '@icons/material/CloseIcon'
+import CheckIcon from '@icons/material/CheckIcon'
+import {Dialog, DialogTitle } from '@material-ui/core'
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import { green, red } from '@material-ui/core/colors';
 
 class ColorPaletteList extends Component {
     constructor(props){
         super(props);
+        this.state={
+            open: false,
+        }
         this.handleDelete = this.handleDelete.bind(this)
+        this.cancelDelete = this.cancelDelete.bind(this)
+        this.openDeleteDialog=this.openDeleteDialog.bind(this)
     }
 
-    handleDelete(id){
-        this.props.removePalette(id)
+    openDeleteDialog(e){
+        e.stopPropagation()
+        this.setState({
+            open: true,
+            id: e.target.id,
+        })
+    }
+
+    cancelDelete(){
+        this.setState({
+            open: false,
+            id: "",
+        })
+    }
+
+    handleDelete(evt){
+        this.props.removePalette(this.state.id)
+        this.setState({
+            open: false,
+            id: "",
+        })
     }
 
     goToPalette(id){
@@ -22,7 +53,8 @@ class ColorPaletteList extends Component {
 
 
     render() {
-        const {colorPalettes, classes} = this.props;
+        const {colorPalettes, classes, id} = this.props;
+        const {open} = this.state;
         return(
             <div className={classes.root}>
                 <div className = {classes.container}>
@@ -37,17 +69,50 @@ class ColorPaletteList extends Component {
                             <div key={palette.id}>
                                 <MiniPalette 
                                     id={palette.id}
-                                    // key={palette.id}
                                     colors={palette.colors}
                                     paletteName={palette.paletteName}
                                     emoji = {palette.emoji}
                                     handleClick = {() => this.goToPalette(palette.id)}
-                                    handleDelete={this.handleDelete}
+                                    openDeleteDialog={this.openDeleteDialog}
                                 />
                             </div>
                         ))}
                         
-                    </div>             
+                    </div>
+
+                    <Dialog className={classes.dialog}
+                        onClose = {this.cancelDelete}
+                        open={open}
+                        keepMounted
+                        aria-labelledby="delete-dialog-title"
+                        aria-describedby="delete-dialog"
+                    >
+                    <DialogTitle id="delete-dialog-title"> Delete This Palette?</DialogTitle>
+                    <List>
+                        <ListItem button onClick={this.handleDelete} key={id} id={id}>
+                            <ListItemAvatar>
+                                <Avatar style={{backgroundColor: green[100], color: green[600]}} >
+                                    <CheckIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText> 
+                                Delete
+                            </ListItemText>
+                        </ListItem>
+                        <ListItem button onClick={this.cancelDelete}> 
+                            <ListItemAvatar>
+                                <Avatar style={{backgroundColor: red[100], color: red[600]}}>
+                                    <CloseIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText> 
+                                Cancel
+                            </ListItemText>
+                        </ListItem>
+                    </List>                       
+                    
+                    </Dialog> 
+
                 </div>
             </div>
 
