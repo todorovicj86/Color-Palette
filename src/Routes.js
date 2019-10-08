@@ -4,7 +4,7 @@ import seedColors from './seedColors'
 import ColorPalette from './ColorPalette'
 import ColorPaletteList from './ColorPaletteList'
 import PaletteShades from './PaletteShades'
-import NewPaletteForm from './NewPaletteForm';
+import MakeNewPalette from './MakeNewPalette'
 import {getPaletteShades} from './helpers'
 
 class Routes extends Component {
@@ -23,6 +23,7 @@ class Routes extends Component {
         this.handleFormat = this.handleFormat.bind(this)
         this.onCopy = this.onCopy.bind(this)
         this.removePalette = this.removePalette.bind(this)
+        this.savePalette = this.savePalette.bind(this)
       }
     
       handleFormat(value){
@@ -63,6 +64,12 @@ class Routes extends Component {
       this.setState({
           colorPalettes: newPalette,
       }, () => window.localStorage.setItem("palettes", JSON.stringify(this.state.colorPalettes)))
+  }
+
+  savePalette(newPalette){
+    const palettes = this.state.colorPalettes;
+    palettes.push(newPalette);
+    window.localStorage.setItem("palettes", JSON.stringify(palettes))
   }
     
   
@@ -106,13 +113,13 @@ class Routes extends Component {
 
         return(
             <Switch>
+                <Route exact path = "/palette/new" render= {(routProps) => <MakeNewPalette format={format} palettes={colorPalettes} savePalette={this.savePalette} {...routProps}/>} /> 
                 <Route exact path="/" 
                       render = {(routProps) => <ColorPaletteList colorPalettes={colorPalettes} removePalette = {this.removePalette} {...routProps}/>} 
                 />
                 <Route exact path = "/palette/:name" render = {getPalette} />
                 {/* <Route exact path = '/palette/:name/:colorName' render ={routProps => <PaletteShades colorPalettes={colorPalettes} {...routProps}/>} /> */}
                 <Route exact path = '/palette/:name/:colorName' render ={getColorShades} />
-                <Route exact path = "/newpalette" render= {() => <NewPaletteForm format={format} palettes={colorPalettes} />} />
                 <Redirect to = "/" />
             </Switch>
 
