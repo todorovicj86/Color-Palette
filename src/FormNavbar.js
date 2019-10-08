@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@icons/material/MenuIcon';
+import ChevronRightIcon from '@icons/material/ChevronRightIcon';
 import Button from '@material-ui/core/Button';
 import ModalDialog from './ModalDialog'
 import styles from './styles/FormNavbarStyles'
@@ -40,12 +40,6 @@ class FormNavbar extends Component{
         })
     }
 
-    // handleChange(evt){
-    //     this.setState({
-    //       [evt.target.name]: evt.target.value,
-    //     })
-    // }
-
     openEmojiModal(){
       this.setState({
           openEmoji: true,
@@ -76,7 +70,7 @@ class FormNavbar extends Component{
                           edge="start"
                           className={classNames(classes.menuButton, open && classes.hide)}
                       >
-                          <MenuIcon />
+                          <ChevronRightIcon />
                       </IconButton>
 
                       <Typography variant="h6" noWrap>
