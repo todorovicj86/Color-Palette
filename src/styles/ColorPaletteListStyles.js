@@ -13,7 +13,7 @@ export default {
         display: "flex",
         flexDirection: 'column',
         flexWrap: 'wrap',
-        width: "50%",
+        width: "60%",
     },
     navbar: {
         alignItems: "center",
@@ -38,7 +38,6 @@ export default {
         display: "grid",
         gridTemplateColumns: "repeat(3, 30%)",
         gridGap: "5%",
-    }
-
+    },
 
 }
