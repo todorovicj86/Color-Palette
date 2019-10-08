@@ -31,7 +31,7 @@ class ColorPaletteList extends Component {
                     <nav className={classes.navbar}>
                         <h1 className={classes.title}>Color Palettes</h1>
                         <h5 className={classes.link}>
-                            <Link to ="/newpalette">Create A New Palette</Link>
+                            <Link to ="/palette/new">Create A New Palette</Link>
                         </h5>
                     </nav>
                     <div className={classes.palettes}>
