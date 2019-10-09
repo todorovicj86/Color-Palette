@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { CSSTransition, TransitionGroup} from 'react-transition-group';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/ColorPaletteListStyles';
 import MiniPalette from './MiniPalette'
@@ -65,19 +66,26 @@ class ColorPaletteList extends Component {
                         </h5>
                     </nav>
                     <div className={classes.palettes}>
-                        {colorPalettes.map(palette => ( 
-                            <div key={palette.id}>
-                                <MiniPalette 
-                                    id={palette.id}
-                                    colors={palette.colors}
-                                    paletteName={palette.paletteName}
-                                    emoji = {palette.emoji}
-                                    handleClick = {() => this.goToPalette(palette.id)}
-                                    openDeleteDialog={this.openDeleteDialog}
-                                />
-                            </div>
-                        ))}
-                        
+                        <TransitionGroup component={null}>
+                            {colorPalettes.map(palette => (
+                                <CSSTransition key={palette.id}
+                                    timeout={500}
+                                    classNames="fade" 
+                                >
+                               
+                                    <MiniPalette 
+                                        key={palette.id}
+                                        id={palette.id}
+                                        colors={palette.colors}
+                                        paletteName={palette.paletteName}
+                                        emoji = {palette.emoji}
+                                        handleClick = {() => this.goToPalette(palette.id)}
+                                        openDeleteDialog={this.openDeleteDialog}
+                                    />
+                               
+                                </CSSTransition>
+                            ))}
+                        </TransitionGroup>
                     </div>
 
                     <Dialog className={classes.dialog}
