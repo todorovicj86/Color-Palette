@@ -35,7 +35,11 @@ class ModalDialog extends Component {
     }
 
    savePalette(emojiIcon){
+    this.setState({
+        openEmoji: false,
+    })
       this.props.savePalette(this.state.paletteName, emojiIcon.native)
+     
     }
 
  
