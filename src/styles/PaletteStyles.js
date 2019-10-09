@@ -1,3 +1,5 @@
+import mediaquery from './mediaquery'
+
 export default {
     colorPalette: {
         backgroundColor: "white",
@@ -12,6 +14,12 @@ export default {
          // "& div:first-child div:nth-child(2)": {
         //     opacity: "0",
         // }
+        [mediaquery.down('sm')]: {
+            height:  "10vh",
+        },
+        [mediaquery.down('xs')]: {
+            height:  "10vh",
+        },
     },
     link: {
         alignItems: "center",
@@ -23,7 +31,16 @@ export default {
             flex: "0 1 auto",
             marginLeft: "auto",
             color: "black",
-        }
+        },
+        [mediaquery.down('md')]: {
+            width:  "20%",
+        },
+        [mediaquery.down('sm')]: {
+            width:  "30%",
+        },
+        [mediaquery.down('xs')]: {
+            width: "30%",
+        },
 
     },
     linkBack: {
@@ -36,6 +53,7 @@ export default {
             color:"blue"
         }
     },
+
     colorBoxesContainer: {
         height: "90vh",
     }
