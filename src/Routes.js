@@ -25,7 +25,25 @@ class Routes extends Component {
         this.removePalette = this.removePalette.bind(this)
         this.savePalette = this.savePalette.bind(this)
       }
-    
+
+      async getPalettes(){
+        let palette = seedColors;
+        this.setState(
+          st => ({
+            colorPalettes: [...st.colorPalettes, ...palette]
+          }),
+          () => window.localStorage.setItem("palettes", JSON.stringify(this.state.colorPalettes))
+        );
+      }
+
+      componentDidMount(){
+  
+        if(this.state.colorPalettes.length === 0){
+          this.getPalettes()
+        }      
+        
+      }
+
       handleFormat(value){
           this.setState({
               format: value,
@@ -36,25 +54,6 @@ class Routes extends Component {
           copied: value
         })
       }
-
-      componentDidMount(){
-  
-        if(this.state.colorPalettes.length === 0){
-          this.getPalettes()
-        }      
-        
-      }
-    
-
-    async getPalettes(){
-      let palette = seedColors;
-      this.setState(
-        st => ({
-          colorPalettes: [...st.colorPalettes, ...palette]
-        }),
-        () => window.localStorage.setItem("palettes", JSON.stringify(this.state.colorPalettes))
-      );
-    }
 
     removePalette(id){
       const oldPalette = [...this.state.colorPalettes];
