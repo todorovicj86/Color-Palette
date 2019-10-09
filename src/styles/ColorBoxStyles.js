@@ -1,6 +1,8 @@
 import chroma from 'chroma-js'
+import mediaquery from './mediaquery'
 
-export default {
+
+const styles = {
 
     ColorBox: {
         display: "inline-block",
@@ -12,7 +14,21 @@ export default {
         "&:hover button:first-of-type": {
             opacity: "1",
             transition: "0.5s"
-        }
+        },
+        [mediaquery.down('lg')]: {
+            width: "25%",
+            height: props => props.showingFullPalette? "20%" : "33.333%",
+        },
+        [mediaquery.down('sm')]: {
+            width: "50%",
+            height: props => props.showingFullPalette? "10%" : "20%",
+        },
+        [mediaquery.down('xs')]: {
+            width: "100%",
+            height: props => props.showingFullPalette? "5%" : "10%",
+        },
+       
+
     },
 
     colorName: {
@@ -125,3 +141,5 @@ export default {
     }
 
 }
+
+export default styles;
