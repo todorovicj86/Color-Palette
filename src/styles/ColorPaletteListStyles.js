@@ -19,6 +19,8 @@ const styles = {
         flexWrap: 'wrap',
         justifyContent: "center",
         height: "100vh",
+        overflow: "auto",
+        paddingBottom: "30px"
     },
     container: {
         alignItems: 'flex-start',
