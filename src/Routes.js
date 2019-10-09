@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { CSSTransition, TransitionGroup} from 'react-transition-group';
 import seedColors from './seedColors'
 import ColorPalette from './ColorPalette'
 import ColorPaletteList from './ColorPaletteList'
@@ -80,12 +81,18 @@ class Routes extends Component {
               palette => palette.id === name
               
             );
-            return <ColorPalette {...props} palette={getPaletteShades(currentPalette)} 
-                      format={this.state.format} 
-                      handleFormat = {this.handleFormat}
-                      onCopy = {this.onCopy} 
-                      sliderMarks = {this.props.marks}
-                    />;
+            return(
+              <div className="page">
+                <ColorPalette 
+                  {...props} 
+                  palette={getPaletteShades(currentPalette)} 
+                  format={this.state.format} 
+                  handleFormat = {this.handleFormat}
+                  onCopy = {this.onCopy} 
+                  sliderMarks = {this.props.marks}
+                  />
+              </div>
+            )
         };
       
         const getColorShades = props => {
@@ -100,28 +107,70 @@ class Routes extends Component {
               
             )
       
-            return <PaletteShades {...props} color={currentColor} 
-                      palette = {currentPalette} 
-                      format={this.state.format} 
-                      handleFormat = {this.handleFormat}
-                      onCopy = {this.onCopy} 
-                    />
+            return( 
+              <div className="page">
+                <PaletteShades 
+                  {...props} 
+                  color={currentColor} 
+                  palette = {currentPalette} 
+                  format={this.state.format} 
+                  handleFormat = {this.handleFormat}
+                  onCopy = {this.onCopy} 
+                />
+              </div>
+            )
         }
 
         const {colorPalettes, format } = this.state;
 
         return(
-            <Switch>
-                <Route exact path = "/palette/new" render= {(routProps) => <MakeNewPalette format={format} palettes={colorPalettes} savePalette={this.savePalette} {...routProps}/>} /> 
-                <Route exact path="/" 
-                      render = {(routProps) => <ColorPaletteList colorPalettes={colorPalettes} removePalette = {this.removePalette} {...routProps}/>} 
-                />
-                <Route exact path = "/palette/:name" render = {getPalette} />
-                {/* <Route exact path = '/palette/:name/:colorName' render ={routProps => <PaletteShades colorPalettes={colorPalettes} {...routProps}/>} /> */}
-                <Route exact path = '/palette/:name/:colorName' render ={getColorShades} />
-                <Redirect to = "/" />
-            </Switch>
-
+          <Route 
+            render={({location}) => (
+              <TransitionGroup>
+                <CSSTransition classNames="fade" timeout={500} key={location.key}>
+                  <Switch location={location}>
+                    <Route 
+                      exact 
+                      path = "/palette/new" 
+                      render= {(routProps) => (
+                        <div className="page">
+                          <MakeNewPalette 
+                            format={format}
+                            palettes={colorPalettes} 
+                            savePalette={this.savePalette} 
+                            {...routProps}/>
+                        </div>
+                      )}
+                    />
+                        
+                      
+                    <Route 
+                      exact 
+                      path="/" 
+                      render = {(routProps) => (
+                        <div className="page">
+                          <ColorPaletteList 
+                            colorPalettes={colorPalettes} 
+                            removePalette = {this.removePalette} 
+                            {...routProps}/>
+                        </div>
+                      )} 
+                    />
+                    <Route 
+                      exact 
+                      path = "/palette/:name"
+                      render = {getPalette} />
+                    <Route 
+                      exact 
+                      path = '/palette/:name/:colorName' 
+                      render ={getColorShades} />
+                    <Redirect to = "/" />
+                  </Switch>
+                </CSSTransition>
+            </TransitionGroup>
+            )}
+          />
+      
         )
     }
 }
