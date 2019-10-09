@@ -23,6 +23,7 @@ class ColorPaletteList extends Component {
         this.handleDelete = this.handleDelete.bind(this)
         this.cancelDelete = this.cancelDelete.bind(this)
         this.openDeleteDialog=this.openDeleteDialog.bind(this)
+        this.goToPalette = this.goToPalette.bind(this)
     }
 
     openDeleteDialog(e){
@@ -79,7 +80,7 @@ class ColorPaletteList extends Component {
                                         colors={palette.colors}
                                         paletteName={palette.paletteName}
                                         emoji = {palette.emoji}
-                                        handleClick = {() => this.goToPalette(palette.id)}
+                                        handleClick = {this.goToPalette}
                                         openDeleteDialog={this.openDeleteDialog}
                                     />
                                
