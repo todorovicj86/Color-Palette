@@ -46,7 +46,7 @@ class PaletteNavbar extends Component {
 
     render(){
         const {value, open} = this.state;
-        const {format, classes, hiddenSlider} = this.props;
+        const {format, classes, hiddenSlider, showingFullPalette} = this.props;
         return(
             <div className={classes.PaletteNavbar}>
                 <div className={classes.logo}>
@@ -60,15 +60,15 @@ class PaletteNavbar extends Component {
                             Level: [{value}]
                         </span>
                         
-                            <div className={classes.slider}>
-                                <Slider 
-                                    defaultValue={value}
-                                    step={100}
-                                    min={100}
-                                    max={900}
-                                    onChange={this.handleShadeChange}
-                                />
-                            </div>
+                        <div className={classes.slider}>
+                            <Slider 
+                                defaultValue={value}
+                                step={100}
+                                min={100}
+                                max={900}
+                                onChange={this.handleShadeChange}
+                            />
+                        </div>
                     
                     </div>
                 
