@@ -46,7 +46,7 @@ class PaletteNavbar extends Component {
 
     render(){
         const {value, open} = this.state;
-        const {format, classes, hiddenSlider, showingFullPalette} = this.props;
+        const {format, classes, hiddenSlider} = this.props;
         return(
             <div className={classes.PaletteNavbar}>
                 <div className={classes.logo}>
