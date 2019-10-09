@@ -87,7 +87,7 @@ class FormNavbar extends Component{
                     </Link>
                     
                     <Button variant="contained" color="primary" onClick={this.openModal}>
-                        Save Palette
+                        Save
                     </Button>
                   </div>
                 
