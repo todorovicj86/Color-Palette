@@ -1,5 +1,7 @@
 
-const drawerWidth = 400;
+import {DRAWER_WIDTH} from '../constants'
+
+const drawerWidth = DRAWER_WIDTH;
 
 const styles = theme => ({
   root: {

@@ -1,3 +1,4 @@
+import mediaquery from './mediaquery'
 export default {
     root: {
         backgroundColor: "white",
@@ -5,6 +6,9 @@ export default {
         padding: "0.5rem",
         position: "relative",
         overflow: "hidden",
+        cursor: "pointer",
+        margin: " 0 auto",
+        width: "100%",
         "&:hover": {
             "& button":{
                 opacity: "1",
@@ -58,8 +62,17 @@ export default {
         opacity: "0",
         borderRadius: "0",
         backgroundColor: "rgb(233,108,108)",
+        transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)!important",
+        zIndex: "10",
+       
         "&:hover": {
-            backgroundColor: "rgba(233,108,108, 0.8)"
+            backgroundColor: "rgba(233,108,108, 0.8)",
+            
+        }
+    },
+    dialog: {
+        "& button":{
+            margin: "20px"
         }
     }
 }

@@ -1,5 +1,7 @@
 import chroma from 'chroma-js'
-export default {
+import mediaquery from './mediaquery'
+
+ const styles = {
     root: {
         display: "inline-block",
         height: "25%",
@@ -10,6 +12,18 @@ export default {
         "&:hover i": {
             color: "white",
             transform: "scale(1.2)"
+        },
+        [mediaquery.down("lg")]: {
+            width: "25%",
+            height: "20%"
+        },
+        [mediaquery.down("md")]: {
+            width: "50%",
+            height: "10%"
+        },
+        [mediaquery.down("sm")]: {
+            width: "100%",
+            height: "5%"
         }
     },
     boxContent: {
@@ -36,3 +50,5 @@ export default {
     }
 
 }
+
+export default styles;

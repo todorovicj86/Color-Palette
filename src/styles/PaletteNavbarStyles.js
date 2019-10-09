@@ -1,10 +1,31 @@
-export default {
+import mediaquery from './mediaquery'
+
+const styles =  {
     PaletteNavbar: {
         display: "flex",
         flexDirection:" row",
         fontFamily: "'Roboto', sans-serif",
         alignItems: "center",
         width: "70%",
+        // [mediaquery.down('lg')]: {
+        //     width: "25%",
+        //     height: props => props.showingFullPalette? "20%" : "33.333%",
+        // },
+        [mediaquery.down('md')]: {
+            width: "80%",
+        },
+        [mediaquery.down('sm')]: {
+            flexDirection: props => props.showingFullPalette === false ? "row" : "column",
+            height: props => props.showingFullPalette === false ? "6vh" : "10vh",
+            width: "100%",
+            padding: "10px 20px",
+        },
+        [mediaquery.down('xs')]: {
+            flexDirection: props => props.showingFullPalette === false ? "row" : "column",
+            height: props => props.showingFullPalette === false ? "6vh" : "10vh",
+            width: "100%",
+            padding: "10px 20px",
+        },
     },
     logo: {
         backgroundColor: "#ECEFF1",
@@ -18,11 +39,36 @@ export default {
             textDecoration: "none",
             fontWeight: '500',
 
-        }
+        },
+        // [mediaquery.down('lg')]: {
+        //     width: "25%",
+        //     height: props => props.showingFullPalette? "20%" : "33.333%",
+        // },
+        [mediaquery.down('sm')]: {
+            display: "none",
+        },
+        [mediaquery.down('xs')]: {
+            display:  "none",
+            // alignItems: "center",
+            // textAlign: "left",
+            // height: "100%",
+        },
     },
+
     sliderContainer: {
         width: "35%",
         margin: "0 auto",
+        paddingLeft: "5px",
+
+        [mediaquery.down('sm')]: {
+            width: "100%",
+            textAlign: "left",
+        },
+
+        [mediaquery.down('xs')]: {
+            width: "100%",
+            textAlign: "left",
+        },
 
     },
 
@@ -43,22 +89,50 @@ export default {
             width: "16px",
             height:" 16px",
             boxShadow: "none",
-        }
+        },
+        [mediaquery.down('md')]: {
+            width: "100%",
+        },
+        [mediaquery.down('sm')]: {
+            width: "70%",
+        },
+        [mediaquery.down('xs')]: {
+            width: "80%",
+        },
     },
 
     sliderLegend: {
         display: "inline-block",
         width: "35%",
+        [mediaquery.down('md')]: {
+            width: "100%",
+        },
     },
 
     select: {
         textAlign: "center",
         width: "45%",
         margin: "0 auto",
+        [mediaquery.down('sm')]: {
+            width: "100%",
+            textAlign: "left",
+        },
+        [mediaquery.down('xs')]: {
+            width: "100%",
+            textAlign: "left",
+        },
     },
 
     hidden: {
-        opacity: "0"
+        opacity: "0",
+        [mediaquery.down('sm')]: {
+            display: props => props.showingFullPalette === false ? "none": "",
+        },
+        [mediaquery.down('xs')]: {
+            display: props => props.showingFullPalette === false ? "none": "",
+        },
     }
 
 }
+
+export default styles;

@@ -1,4 +1,7 @@
-const drawerWidth = 400;
+import {DRAWER_WIDTH} from '../constants'
+import mediaquery from './mediaquery'
+
+const drawerWidth = DRAWER_WIDTH;
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -26,11 +29,17 @@ const styles = theme => ({
       hide: {
         display: 'none',
       },
+      
       navBtn: {
+          display: "flex",
           padding: "0 10px",
           "& button": {
-          marginLeft: "10px"
-        }
+            marginLeft: "10px",
+            [mediaquery.down("sm")]: {
+              padding: "0.3rem!important",
+              marginLeft: "5px"
+            }
+          }
 
       },
      
