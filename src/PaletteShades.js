@@ -7,11 +7,16 @@ import Button from '@material-ui/core/Button';
 // import Grid from '@material-ui/core/Grid'
 import chroma from 'chroma-js'
 import { withStyles } from '@material-ui/styles';
-import styles from './styles/PaletteStyles'
+// import styles from './styles/PaletteStyles'
+import styles from './styles/PaletteShadesStyles'
 import uuid from 'uuid'
 
 
 class PaletteShades extends Component {
+    static defaultProps = {
+        showingFullPalette: false,
+    }
+
 //  make shades of one color
     getShades(){
         let shadeObj =[]
@@ -35,8 +40,7 @@ class PaletteShades extends Component {
 
     render(){
         const shades = this.getShades();
-        const {format, handleFormat, palette, onCopy, classes } = this.props;
-
+        const {format, handleFormat, palette, onCopy, classes, showingFullPalette} = this.props;
        
         const colorShades = shades.map(bgColor => (
             <ColorBox 
@@ -50,17 +54,18 @@ class PaletteShades extends Component {
                 format = {format}
                 key = {uuid()}
                 id={bgColor.id}
-                showingFullPalette = {false}                                           
+                showingFullPalette = {showingFullPalette}                                           
             />
         
         ))
         return(
             <div className={classes.colorPalette}>
-                <div className={classes.header}>
+                <div className={classes.header} >
                     <PaletteNavbar 
                         handleFormat = {handleFormat} 
                         format = {format}
                         hiddenSlider = {true}
+                        showingFullPalette = {showingFullPalette}
                     />
                     <div className = {classes.link}>
                         <Button>
@@ -71,7 +76,9 @@ class PaletteShades extends Component {
                 <div className={classes.colorBoxesContainer}>
                     {colorShades}
                 </div>  
-                <Footer {...palette} />
+                <Footer {...palette}
+                    showingFullPalette = {showingFullPalette} 
+                />
             </div>
         )
     }
