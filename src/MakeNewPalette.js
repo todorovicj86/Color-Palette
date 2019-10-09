@@ -7,6 +7,7 @@ import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@icons/material/ChevronLeftIcon';
+
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
@@ -110,7 +111,7 @@ class MakeNewPalette extends Component {
 
     render(){
         const {classes, maxColors, palettes} = this.props;
-        const {open, colors, openEmoji} = this.state;
+        const {open, colors} = this.state;
         const paletteIsFull = colors.length >= maxColors;
 
         return(
