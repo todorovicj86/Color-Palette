@@ -6,6 +6,7 @@ import ColorPalette from './ColorPalette'
 import ColorPaletteList from './ColorPaletteList'
 import PaletteShades from './PaletteShades'
 import MakeNewPalette from './MakeNewPalette'
+import Page from './Page'
 import {getPaletteShades} from './helpers'
 
 class Routes extends Component {
@@ -82,7 +83,7 @@ class Routes extends Component {
               
             );
             return(
-              <div className="page">
+              <Page>
                 <ColorPalette 
                   {...props} 
                   palette={getPaletteShades(currentPalette)} 
@@ -91,7 +92,7 @@ class Routes extends Component {
                   onCopy = {this.onCopy} 
                   sliderMarks = {this.props.marks}
                   />
-              </div>
+              </Page>
             )
         };
       
@@ -108,7 +109,7 @@ class Routes extends Component {
             )
       
             return( 
-              <div className="page">
+              <Page>
                 <PaletteShades 
                   {...props} 
                   color={currentColor} 
@@ -117,7 +118,7 @@ class Routes extends Component {
                   handleFormat = {this.handleFormat}
                   onCopy = {this.onCopy} 
                 />
-              </div>
+              </Page>
             )
         }
 
@@ -127,19 +128,19 @@ class Routes extends Component {
           <Route 
             render={({location}) => (
               <TransitionGroup>
-                <CSSTransition classNames="fade" timeout={500} key={location.key}>
+                <CSSTransition classNames="page" timeout={500} key={location.key}>
                   <Switch location={location}>
                     <Route 
                       exact 
                       path = "/palette/new" 
                       render= {(routProps) => (
-                        <div className="page">
+                        <Page>
                           <MakeNewPalette 
                             format={format}
                             palettes={colorPalettes} 
                             savePalette={this.savePalette} 
                             {...routProps}/>
-                        </div>
+                        </Page>
                       )}
                     />
                         
@@ -148,12 +149,12 @@ class Routes extends Component {
                       exact 
                       path="/" 
                       render = {(routProps) => (
-                        <div className="page">
+                        <Page>
                           <ColorPaletteList 
                             colorPalettes={colorPalettes} 
                             removePalette = {this.removePalette} 
                             {...routProps}/>
-                        </div>
+                        </Page>
                       )} 
                     />
                     <Route 
