@@ -12,6 +12,9 @@ import uuid from 'uuid'
 
 
 class ColorPalette extends Component {
+    static defaultProps = {
+        showingFullPalette: true,
+    }
     constructor(props){
         super(props);
         this.state = {
@@ -34,7 +37,7 @@ class ColorPalette extends Component {
 
     render(){
 
-        const {palette, format, sliderMarks,handleFormat, classes} = this.props;
+        const {palette, format, sliderMarks,handleFormat, classes, showingFullPalette} = this.props;
         const colorBoxes = palette.colors[this.state.shadeLevel].map (color => (
             <ColorBox 
                 bgColor = {color[format]}
@@ -44,7 +47,7 @@ class ColorPalette extends Component {
                 format = {format}
                 paletteId = {palette.id}
                 id={color.id}
-                showingFullPalette={true}
+                showingFullPalette={showingFullPalette}
             />
         ))
           
@@ -58,6 +61,7 @@ class ColorPalette extends Component {
                         marks = {sliderMarks}
                         changeShade = {this.changeShade}
                         hiddenSlider = {false}
+                        showingFullPalette={showingFullPalette}
                     />
 
                     <div className={classes.link}>
@@ -70,7 +74,7 @@ class ColorPalette extends Component {
                     {colorBoxes}
                 </div>
 
-                <Footer {...palette}/>
+                <Footer {...palette} showingFullPalette={!showingFullPalette}/>
     
             </div>
         )
