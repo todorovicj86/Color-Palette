@@ -15,6 +15,7 @@ import DraggableColorBoxList from './DraggableColorBoxList'
 import FormNavbar from './FormNavbar'
 import ColorPicker from './ColorPicker'
 import styles from './styles/MakeNewPaletteStyles'
+import seedColors from './seedColors'
 
 
 class MakeNewPalette extends Component {
@@ -25,7 +26,7 @@ class MakeNewPalette extends Component {
       super(props);
       this.state = {
         open: true,
-        colors: this.props.palettes[0].colors,
+        colors: seedColors[0].colors,
         id:"",
         emoji:"",
         openEmoji: false,
