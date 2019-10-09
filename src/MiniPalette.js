@@ -1,15 +1,22 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/MiniPaletteStyles'
 import IconButton from '@material-ui/core/IconButton';
 
-class MiniPalette extends Component {
-
+class MiniPalette extends PureComponent {
+    constructor(props){
+        super(props);
+        this.handleClick= this.handleClick.bind(this)
+    }
+    handleClick(){
+        this.props.goToPalette(this.props.id)
+    }
     render(){
         const {classes, id, paletteName, colors, emoji, handleClick} = this.props;
+        console.log("render " + id )
 
         return(
-            <div className={classes.root} onClick={this.props.handleClick}>
+            <div className={classes.root} onClick={this.handleClick}>
               
                     <div className={classes.colors}>
                         {colors.map(color => (
