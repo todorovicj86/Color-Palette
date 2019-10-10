@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/styles';
+import chroma from 'chroma-js'
 import PaletteNavbar from './PaletteNavbar'
 import ColorBox from './ColorBox'
 import Footer from './Footer'
-import Button from '@material-ui/core/Button';
-// import Grid from '@material-ui/core/Grid'
-import chroma from 'chroma-js'
-import { withStyles } from '@material-ui/styles';
-// import styles from './styles/PaletteStyles'
-import styles from './styles/PaletteShadesStyles'
-import uuid from 'uuid'
+import styles from './styles/PaletteShadesStyles';
 
 
 class PaletteShades extends Component {
@@ -52,7 +49,7 @@ class PaletteShades extends Component {
                 }
                 onCopy = {onCopy}
                 format = {format}
-                key = {uuid()}
+                key = {bgColor.name}
                 id={bgColor.id}
                 showingFullPalette = {showingFullPalette}                                           
             />
