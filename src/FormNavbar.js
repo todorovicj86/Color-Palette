@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
-import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronRightIcon from '@icons/material/ChevronRightIcon';
 import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 import ModalDialog from './ModalDialog'
 import styles from './styles/FormNavbarStyles'
 
