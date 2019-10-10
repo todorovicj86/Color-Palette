@@ -7,10 +7,7 @@ const styles =  {
         fontFamily: "'Roboto', sans-serif",
         alignItems: "center",
         width: "70%",
-        // [mediaquery.down('lg')]: {
-        //     width: "25%",
-        //     height: props => props.showingFullPalette? "20%" : "33.333%",
-        // },
+
         [mediaquery.down('md')]: {
             width: "80%",
         },
@@ -40,18 +37,12 @@ const styles =  {
             fontWeight: '500',
 
         },
-        // [mediaquery.down('lg')]: {
-        //     width: "25%",
-        //     height: props => props.showingFullPalette? "20%" : "33.333%",
-        // },
+  
         [mediaquery.down('sm')]: {
             display: "none",
         },
         [mediaquery.down('xs')]: {
             display:  "none",
-            // alignItems: "center",
-            // textAlign: "left",
-            // height: "100%",
         },
     },
 
