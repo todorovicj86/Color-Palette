@@ -1,4 +1,4 @@
-export default {
+const styles ={
     root: {
         display: "flex",
         flexDirection: 'column',
@@ -34,3 +34,5 @@ export default {
         width: "100%", 
     }
 }
+
+export default styles;
