@@ -45,7 +45,7 @@ import mediaquery from './mediaquery'
         color: props => chroma.contrast(props.color, 'white') >= 4.5 ? "white" : "black",
         padding: "0",
         transition: "all 0.5s ease-in-out",
-        fontSize: "11px",
+        fontSize: "15px",
     
     }
 
