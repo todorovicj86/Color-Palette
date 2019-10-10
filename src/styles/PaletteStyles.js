@@ -1,19 +1,16 @@
 import mediaquery from './mediaquery'
 
-export default {
+const styles= {
     colorPalette: {
         backgroundColor: "white",
         height: "100vh",
-        overflow: "auto",
     },
     header: {
         display: "flex",
         flexDirection:"row",
         width: "100%",
         height:"6vh",
-         // "& div:first-child div:nth-child(2)": {
-        //     opacity: "0",
-        // }
+ 
         [mediaquery.down('sm')]: {
             height:  "10vh",
         },
@@ -59,3 +56,4 @@ export default {
     }
 
 }
+export default styles;
