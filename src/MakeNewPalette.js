@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import {arrayMove} from 'react-sortable-hoc';
-
 import classNames from 'classnames'
-import { withStyles } from '@material-ui/core/styles';
+
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@icons/material/ChevronLeftIcon';
-
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
 import DraggableColorBoxList from './DraggableColorBoxList'
+import { withStyles } from '@material-ui/core/styles';
 import FormNavbar from './FormNavbar'
 import ColorPicker from './ColorPicker'
 import styles from './styles/MakeNewPaletteStyles'
@@ -107,7 +105,8 @@ class MakeNewPalette extends Component {
     colorsSet.add(newRandomColor)
     this.setState({
           colors: [...this.state.colors, newRandomColor],
-    })   
+    })
+      
   }
 
     render(){
