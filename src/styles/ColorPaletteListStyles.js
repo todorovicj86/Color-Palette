@@ -1,4 +1,5 @@
 import mediaquery from './mediaquery'
+import backgroundSVG from './Diamond-Sunset.svg'
 
 const styles = {
     "@global": {
@@ -13,12 +14,14 @@ const styles = {
     },
     root: {
         alignItems: "flex-start",
-        // backgroundColor: "blue",
+        /* background by SVGBackgrounds.com */
+        backgroundColor: " #FFFFFF",
+        backgroundImage: `url(${backgroundSVG})`, 
         color: "white",
         display: "flex",
         flexWrap: 'wrap',
         justifyContent: "center",
-        height: "100vh",
+        height: "100%",
         overflow: "auto",
         paddingBottom: "30px"
     },
