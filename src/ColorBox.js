@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 import Button from '@material-ui/core/Button';
-import chroma from 'chroma-js'
 import { withStyles } from '@material-ui/styles';
+import chroma from 'chroma-js'
 import styles from './styles/ColorBoxStyles'
 
 class ColorBox extends Component {
@@ -13,27 +13,15 @@ class ColorBox extends Component {
             copied: false,
         }
         this.handleCopy = this.handleCopy.bind(this)
-        // this.handleClick = this.handleClick.bind(this);
     }
 
     handleCopy(evt){
-    //    this.props.onCopy(true)
        this.setState({
            copied: true,
         },() => (setTimeout(() => this.setState({copied: false}), 1500)))
     }
 
-    // handleClick(evt){
-    //     this.setState({
-    //         copied: true,
-    //     })
-    //     setTimeout(()=>
-    //         this.setState({
-    //             copied: false,
-    //     }),1000)
-    // }
     render(){
-        // let bgColor = this.props.colorCode; 
         const { bgColor, colorName, paletteId, id, showingFullPalette, classes, format, showLink } = this.props;
         const{copied } = this.state;
         const textColor = chroma.contrast(bgColor, 'white') >= 4.5 ? "white" : "black"
