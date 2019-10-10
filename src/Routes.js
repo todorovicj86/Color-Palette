@@ -11,7 +11,6 @@ import {getPaletteShades} from './helpers'
 
 class Routes extends Component {
     static defaultProps = {
-        // colorPalettes: seedColors,
         marks: {50: "50", 100: "100", 200: "200", 300: "300", 400: "400", 500: "500", 600: "600", 700: "700", 800: "800", 900: "900"}
     }
       constructor(props){
@@ -39,7 +38,6 @@ class Routes extends Component {
       }
 
       componentDidMount(){
-  
         if(this.state.colorPalettes.length === 0){
           this.getPalettes()
         }      
