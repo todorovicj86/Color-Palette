@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import Button from '@material-ui/core/Button';
 import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core'
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { Picker } from 'emoji-mart'
 import 'emoji-mart/css/emoji-mart.css'
 
@@ -41,8 +41,6 @@ class ModalDialog extends Component {
       this.props.savePalette(this.state.paletteName, emojiIcon.native)
      
     }
-
- 
 
     render(){
         const {paletteName,} = this.state;
