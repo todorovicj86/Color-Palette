@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import { withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import ColorBox from './ColorBox'
 import PaletteNavbar from './PaletteNavbar'
 import Footer from './Footer'
 import {getPaletteShades} from './helpers'
-import { withStyles } from '@material-ui/styles';
 import styles from './styles/PaletteStyles';
-import uuid from 'uuid'
-
-
 
 class ColorPalette extends Component {
     static defaultProps = {
@@ -38,11 +35,12 @@ class ColorPalette extends Component {
     render(){
 
         const {palette, format, sliderMarks,handleFormat, classes, showingFullPalette} = this.props;
-        const colorBoxes = palette.colors[this.state.shadeLevel].map (color => (
+        const {shadeLevel} = this.state;
+        const colorBoxes = palette.colors[shadeLevel].map (color => (
             <ColorBox 
                 bgColor = {color[format]}
                 colorName = {color.name}
-                key={uuid()}
+                key={color.name}
                 onCopy = {this.handleCopy}
                 format = {format}
                 paletteId = {palette.id}
