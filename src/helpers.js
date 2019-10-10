@@ -1,35 +1,5 @@
 import chroma from 'chroma-js'
 
-
-// var rgbToHex = function (rgb) { 
-//     var hex = Number(rgb).toString(16);
-//     if (hex.length < 2) {
-//          hex = "0" + hex;
-//     }
-//     return hex;
-//   };
-
-//   var fullColorHex = function(r,g,b) {   
-//     var red = rgbToHex(r);
-//     var green = rgbToHex(g);
-//     var blue = rgbToHex(b);
-//     return red+green+blue;
-//   };
-
-//   var colorShades = function(r, g, b){
-//     var max = Math.max(r,Math.max(g,b));
-//     var step = 255 / (max * 10);
-//     var red = (r * step, g * step, b * step)
-//     var green =  (r * step * 2, g * step * 2, b * step * 2)
-//     var blue = (r * step * 3, g * step * 3, b * step * 3)
-//     //   var red = rgbToHex(Math.round(11*r/10))
-//     //   var green = rgbToHex(Math.round(11*g/10))
-//     //   var blue = rgbToHex(Math.round(11*b/10))
-//     console.log(red, green,blue)
-//       return red+green+blue;
-//   }
-
-
 var getPaletteShades = function (currentPalette){
   let colorShade;
   let shades = [];
@@ -63,47 +33,39 @@ var getPaletteShades = function (currentPalette){
 
   } 
 
-  let newPalette = {
-    paletteName: currentPalette.paletteName,
-    id: currentPalette.id,
-    emoji: currentPalette.emoji,
-    colors: shades,
+    let newPalette = {
+      paletteName: currentPalette.paletteName,
+      id: currentPalette.id,
+      emoji: currentPalette.emoji,
+      colors: shades,
+    }
+    let colors = {};
+    for(let i = 0; i < levels.length; i++){
+      let allColors = new Set();
+      allColors.add(shades)
+      colors[levels[i]]=[];
+      // console.log(allColors)
+      for(let color of allColors){
+        color.forEach(function(c){
+          if((c.name.search(" " + levels[i]) !== -1)){
+            // console.log(c)
+            color = c;
+            colors[levels[i]].push(color)
+          }     
+        })
+    }
+    newPalette.colors = colors;
   }
-  let colors = {};
-  for(let i = 0; i < levels.length; i++){
-    let allColors = new Set();
-    allColors.add(shades)
-    colors[levels[i]]=[];
-    // console.log(allColors)
-    for(let color of allColors){
-      color.forEach(function(c){
-        if((c.name.search(" " + levels[i]) !== -1)){
-          // console.log(c)
-          color = c;
-          colors[levels[i]].push(color)
-        }     
-      })
+  // console.log(newPalette)
+  let firstRow = new Set(newPalette.colors[50]);
+  for(let el of firstRow){
+    if(el.name.search("500") !== -1){
+      firstRow.delete(el)
+    }
   }
-  newPalette.colors = colors;
-}
-// console.log(newPalette)
-let firstRow = new Set(newPalette.colors[50]);
-for(let el of firstRow){
-  if(el.name.search("500") !== -1){
-    firstRow.delete(el)
-  }
-}
-newPalette.colors[50] = Array.from(firstRow);
-// console.log(newPalette);
-return newPalette
+  newPalette.colors[50] = Array.from(firstRow);
+  // console.log(newPalette);
+  return newPalette
 
-
-// newPalette.colors[50].forEach(function(el){
-//   if(el.name.search("500") !== -1){
-//     console.log(el)
-//   }
-// })
-// console.log(newPalette.colors[50])
-    // return newPalette;
 }
 export { getPaletteShades}
