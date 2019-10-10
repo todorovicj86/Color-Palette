@@ -11,9 +11,7 @@ const styles = {
         flexDirection:"row",
         width: "100%",
         height:"6vh",
-         // "& div:first-child div:nth-child(2)": {
-        //     opacity: "0",
-        // }
+ 
         [mediaquery.down('sm')]: {
             height:  "6vh",
         },
