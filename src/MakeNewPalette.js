@@ -94,20 +94,20 @@ class MakeNewPalette extends Component {
 
   chooseRandomColor(){
     const colors = this.props.palettes.map(palette => palette.colors).flat();
-    const random = Math.floor(Math.random() * colors.length)
+    let random = Math.floor(Math.random() * colors.length)
     let newRandomColor = colors[random]
     let colorsSet = new Set(this.state.colors.map(color => color.color))
+    let duplicate = colorsSet.has(newRandomColor.color);
 
-    if(!colorsSet.has(newRandomColor.color)){
-      this.setState({
-        colors: [...this.state.colors, newRandomColor],
-      })
-      colorsSet.add(newRandomColor)
-
-    } else if(colorsSet.has(newRandomColor.color)){
-      alert(newRandomColor.name + " already exists! Please choose again!")
+    while(duplicate){
+      random = Math.floor(Math.random() * colors.length)
+      newRandomColor = colors[random]
+      duplicate = colorsSet.has(newRandomColor.color)
     }
-      
+    colorsSet.add(newRandomColor)
+    this.setState({
+          colors: [...this.state.colors, newRandomColor],
+    })   
   }
 
     render(){
