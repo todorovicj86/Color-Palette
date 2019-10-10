@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
+import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/MiniPaletteStyles'
-import IconButton from '@material-ui/core/IconButton';
 
 class MiniPalette extends PureComponent {
     constructor(props){
@@ -12,9 +12,7 @@ class MiniPalette extends PureComponent {
         this.props.goToPalette(this.props.id)
     }
     render(){
-        const {classes, id, paletteName, colors, emoji, handleClick} = this.props;
-        console.log("render " + id )
-
+        const {classes, id, paletteName, colors, emoji, handleClick, openDeleteDialog} = this.props;
         return(
             <div className={classes.root} onClick={this.handleClick}>
               
@@ -30,7 +28,7 @@ class MiniPalette extends PureComponent {
                         <span className={classes.emoji}>{emoji}</span>
                     </h5> 
                     <IconButton className ={classes.delete} id={id}  
-                        onClick= {this.props.openDeleteDialog} 
+                        onClick= {openDeleteDialog} 
                         
                     >
                         <i id={id} className ="fas fa-trash"></i>
